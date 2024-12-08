@@ -1,10 +1,12 @@
 <script lang="ts">
     import { ReceiveEvent, SendEvent } from '@utils/eventsHandlers';
     import { Receive, Send } from '@enums/events';
-    import { SHOPDATA } from "@stores/stores";
+    import { SHOPDATA } from '@stores/stores';
     import { get } from 'svelte/store';
+    import { dummyShopData } from '@utils/dummyData';
 
-    let shopData = get(SHOPDATA);
+    // let shopData = get(SHOPDATA);
+    let shopData = dummyShopData;
     let selectedCategory: any = 'All';
     let filteredItems: any[] = [];
     let cart: any[] = [];
@@ -14,18 +16,22 @@
         filteredItems =
             category === 'All'
                 ? Object.values(shopData.shopItems)
-                : Object.values(shopData.shopItems).filter(item => item.page === category);
+                : Object.values(shopData.shopItems).filter(
+                      item => item.page === category,
+                  );
     }
 
     function addToCart(item) {
-        const existingItemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+        const existingItemIndex = cart.findIndex(
+            cartItem => cartItem.name === item.name,
+        );
         if (existingItemIndex !== -1) {
             cart = cart.map((cartItem, index) => {
                 if (index === existingItemIndex) {
                     const updatedItem = {
                         ...cartItem,
                         quantity: cartItem.quantity + 1,
-                        totalPrice: (cartItem.quantity + 1) * cartItem.price
+                        totalPrice: (cartItem.quantity + 1) * cartItem.price,
                     };
                     return updatedItem;
                 }
@@ -42,7 +48,7 @@
                 return {
                     ...cartItem,
                     quantity: cartItem.quantity + 1,
-                    totalPrice: (cartItem.quantity + 1) * cartItem.price
+                    totalPrice: (cartItem.quantity + 1) * cartItem.price,
                 };
             }
             return cartItem;
@@ -56,7 +62,7 @@
                     acc.push({
                         ...cartItem,
                         quantity: cartItem.quantity - 1,
-                        totalPrice: (cartItem.quantity - 1) * cartItem.price
+                        totalPrice: (cartItem.quantity - 1) * cartItem.price,
                     });
                 }
             } else {
@@ -89,13 +95,15 @@
 
 <!-- ShopComponent -->
 <div class="flex flex-col md:flex-row justify-between h-full w-full">
-     <!-- Main Content (Items + Categories) -->
+    <!-- Main Content (Items + Categories) -->
     <div class="w-full md:w-6/8">
         <!-- Categories and Items -->
         <div class="flex flex-col">
-            
             <!-- Categories -->
-            <div class="category-scrollbar flex gap-2 mb-4" on:wheel={handleWheel}>
+            <div
+                class="category-scrollbar flex gap-2 mb-4"
+                on:wheel={handleWheel}
+            >
                 <button
                     class="px-4 mb-2 text-lg text-gray-700 bg-gray-200 hover:bg-gray-300 rounded"
                     class:selected={selectedCategory === 'All'}
@@ -115,28 +123,41 @@
             </div>
 
             <!-- Items -->
-            <div class="item-scrollbar grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+            <div
+                class="item-scrollbar grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"
+            >
                 {#each filteredItems as item}
                     <div class="item-card">
-                        <div class="item-details flex flex-col justify-between h-full">
+                        <div
+                            class="item-details flex flex-col justify-between h-full"
+                        >
                             <div>
-                                <h3 class="text-lg text-gray-600 font-semibold">{item.name}</h3>
-                                <p class="text-gray-600 text-sm">{shopData.shopCategory[item.page].name}</p>
+                                <h3 class="text-lg text-gray-600 font-semibold">
+                                    {item.name}
+                                </h3>
+                                <p class="text-gray-600 text-sm">
+                                    {shopData.shopCategory[item.page].name}
+                                </p>
                                 {#if item.stock > 0}
-                                    <p class="text-gray-500 text-sm">Stock: {item.stock}</p>
+                                    <p class="text-gray-500 text-sm">
+                                        Stock: {item.stock}
+                                    </p>
                                 {:else}
-                                    <p class="text-red-500 text-sm">Out of stock</p>
+                                    <p class="text-red-500 text-sm">
+                                        Out of stock
+                                    </p>
                                 {/if}
                             </div>
                             <button
                                 class="mt-2 px-2 bg-blue-500 text-white text-sm rounded self-start"
                                 on:click={() => addToCart(item)}
-                                disabled={item.stock === 0}>
+                                disabled={item.stock === 0}
+                            >
                                 ${item.price}
                             </button>
                         </div>
                         <img
-                            src={item.image}
+                            src="/public/images/dummyImage.png"
                             alt={item.name}
                             class="item-image"
                         />
@@ -149,8 +170,9 @@
     <!-- Cart Section -->
     <div class="w-full md:w-2/6 mt-4 md:mt-0 md:pl-4">
         <div class="flex flex-col items-center">
+            <!-- src={shopData?.shopLogo} -->
             <img
-                src={shopData.shopLogo}
+                src={'/images/TextBlack.png'}
                 alt="images not found"
                 class="w-32 h-32 mb-1"
             />
@@ -163,18 +185,35 @@
         </div>
         <!-- Cart -->
         <div class="mt-2">
-            <h4 class="text-base text-center text-gray-600 font-semibold mb-2">Shopping Cart</h4>
+            <h4 class="text-base text-center text-gray-600 font-semibold mb-2">
+                Shopping Cart
+            </h4>
             <div class="cart border p-1 rounded">
                 {#if cart.length === 0}
-                    <p class="text-red-600 text-sm text-center font-semibold">Cart is empty</p>
+                    <p class="text-red-600 text-sm text-center font-semibold">
+                        Cart is empty
+                    </p>
                 {:else}
                     <ul>
                         {#each cart as item}
                             <li class="cart-item text-gray-800 text-sm">
-                                <button class="px-2 bg-blue-300 rounded mr-2" on:click={() => decrementQuantity(item)}>-</button>
-                                <span class="flex-1 text-left">{item.name}</span>
-                                <span>{item.quantity > 1 ? `${item.quantity}x ` : ''}{item.price}$</span>
-                                <button class="px-2 bg-blue-300 rounded ml-2" on:click={() => incrementQuantity(item)}>+</button>
+                                <button
+                                    class="px-2 bg-blue-300 rounded mr-2"
+                                    on:click={() => decrementQuantity(item)}
+                                    >-</button
+                                >
+                                <span class="flex-1 text-left">{item.name}</span
+                                >
+                                <span
+                                    >{item.quantity > 1
+                                        ? `${item.quantity}x `
+                                        : ''}{item.price}$</span
+                                >
+                                <button
+                                    class="px-2 bg-blue-300 rounded ml-2"
+                                    on:click={() => incrementQuantity(item)}
+                                    >+</button
+                                >
                             </li>
                         {/each}
                     </ul>
@@ -183,12 +222,20 @@
             <!-- Total Price -->
             <div class="flex justify-between mt-4">
                 <span class="text-lg text-gray-500 font-semibold">Total</span>
-                <span class="text-lg text-red-600 font-semibold">${totalPrice()}</span>
+                <span class="text-lg text-red-600 font-semibold"
+                    >${totalPrice()}</span
+                >
             </div>
             <!-- Pay and Clear Buttons -->
             <div class="flex justify-between mt-4">
-                <button class="flex-1 px-4 text-lg bg-green-500 hover:bg-green-600 text-white rounded mr-2" on:click={buyCartItems}>PAY</button>
-                <button class="flex-1 px-4 text-lg bg-red-500 hover:bg-red-600 text-white rounded ml-2" on:click={clearCart}>CLEAR</button>
+                <button
+                    class="flex-1 px-4 text-lg bg-green-500 hover:bg-green-600 text-white rounded mr-2"
+                    on:click={buyCartItems}>PAY</button
+                >
+                <button
+                    class="flex-1 px-4 text-lg bg-red-500 hover:bg-red-600 text-white rounded ml-2"
+                    on:click={clearCart}>CLEAR</button
+                >
             </div>
         </div>
     </div>
@@ -216,7 +263,9 @@
         border: 1px solid #e5e7eb;
         padding: 2px;
         border-radius: 4px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
     }
     .cart-item:hover {
         transform: translateY(-1px);
@@ -237,7 +286,6 @@
     }
     .item-scrollbar {
         overflow-y: auto;
-        white-space: nowrap;
         height: 300px;
     }
     .item-scrollbar::-webkit-scrollbar {
@@ -254,7 +302,9 @@
         border: 1px solid #e5e7eb;
         padding: 5px;
         border-radius: 8px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
         height: 75px;
     }
     .item-card:hover {
