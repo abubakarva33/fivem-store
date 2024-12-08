@@ -123,16 +123,14 @@
             </div>
 
             <!-- Items -->
-            <div
-                class="item-scrollbar grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"
-            >
+            <div class="item-scrollbar grid grid-cols-3 gap-2">
                 {#each filteredItems as item}
                     <div class="item-card">
                         <div
                             class="item-details flex flex-col justify-between h-full"
                         >
                             <div>
-                                <h3 class="text-lg text-gray-600 font-semibold">
+                                <h3 class="text-lg text-gray-100 font-semibold">
                                     {item.name}
                                 </h3>
                                 <p class="text-gray-600 text-sm">
@@ -299,13 +297,18 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid #e5e7eb;
+        /* border: 1px solid #e5e7eb; */
         padding: 5px;
         border-radius: 8px;
         transition:
             transform 0.3s ease,
             box-shadow 0.3s ease;
-        height: 75px;
+        /* height: 75px; */
+        background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 1),
+            rgba(0, 0, 0, 0.2)
+        );
     }
     .item-card:hover {
         transform: translateY(-1px);
@@ -317,8 +320,8 @@
         justify-content: center;
     }
     .item-image {
-        width: 64px;
-        height: 64px;
+        width: 60px;
+        height: 60px;
         object-fit: cover;
         border-radius: 6px;
     }

@@ -5,11 +5,11 @@
 <!-- Fullscreen Container -->
 <div class="h-screen w-screen flex items-center justify-center bg-transparent">
     <!-- Tablet Frame -->
-    <div class="tablet-screen bg-gray-900 w-[640px] h-[360px] rounded-[1.5rem] shadow-lg border-8 border-gray-800 relative">
+    <div class="tablet-screen w-[640px] h-[360px] rounded-[1.5rem] shadow-lg border-8 border-gray-800 relative">
         <!-- Camera Hole -->
         <div class="camera-hole absolute top-2 right-2 bg-black w-4 h-4 rounded-full" ></div>
         <!-- Tablet Screen -->
-        <div class="bg-gray-100 w-full h-full rounded-[0.8rem] overflow-hidden p-2 flex flex-col items-center justify-center">
+        <div class="w-full h-full rounded-[0.8rem] overflow-hidden p-2 flex flex-col items-center justify-center">
             <!-- Tablet Content -->
              <ShopComponent />
         </div>
