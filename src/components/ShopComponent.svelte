@@ -128,7 +128,9 @@
                             class="item-details flex flex-col justify-between h-full"
                         >
                             <div>
-                                <h3 class="text-lg text-gray-100 font-semibold">
+                                <h3
+                                    class="text-base text-gray-800 font-semibold"
+                                >
                                     {item.name}
                                 </h3>
                                 <p class="text-gray-600 text-sm">
@@ -145,7 +147,7 @@
                                 {/if}
                             </div>
                             <button
-                                class="mt-2 px-2 bg-blue-500 text-white text-sm rounded self-start"
+                                class="mt-2 px-[15px] py-[2px] bg-slate-700 hover:bg-slate-800 text-white text-sm rounded self-start"
                                 on:click={() => addToCart(item)}
                                 disabled={item.stock === 0}
                             >
@@ -153,7 +155,7 @@
                             </button>
                         </div>
                         <img
-                            src="/public/images/dummyImage.png"
+                            src="/images/dummyImage.png"
                             alt={item.name}
                             class="item-image"
                         />
@@ -295,27 +297,35 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* border: 1px solid #e5e7eb; */
         padding: 5px;
         border-radius: 8px;
         transition:
             transform 0.3s ease,
             box-shadow 0.3s ease;
-        /* height: 75px; */
         background-image: linear-gradient(
             to right,
-            rgba(0, 0, 0, 1),
-            rgba(0, 0, 0, 0.2)
+            rgb(0 0 0 / 24%),
+            rgb(0 0 0 / 0%)
         );
     }
     .item-card:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    }
+    .item-details > div > h3 {
+        height: 30px;
+        line-height: 12px;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
     .item-details {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
     }
     .item-image {
         width: 60px;
@@ -325,30 +335,24 @@
     }
     .category-scrollbar > button {
         font-family: PFDinDisplayPro;
-        background-color: #040404ad;
-        color: rgba(255, 255, 255, 0.55);
+        background-color: #0000005c;
+        color: #ffffff;
         text-transform: uppercase;
         font-size: 11px;
         border-bottom: 1.5px solid;
         margin: 0% 0.5%;
         transition: 0.8s ease-in-out;
-        /* -webkit-transition: 0.8s ease-in-out; */
         text-align: center;
         line-height: normal;
         padding: 4px 16px;
         border-radius: 5px;
     }
     .category-scrollbar > button:hover {
-        background: linear-gradient(
-            0deg,
-            rgb(112 155 110) 0%,
-            rgb(88 111 86) 45.05%,
-            rgb(0 0 0 / 71%) 74.14%
-        );
-        border-bottom: 1.5px solid rgb(116 185 110);
+        background-image: linear-gradient(315deg, #55efc4 0%, #000000 74%);
+        border-bottom: 1.5px solid #55efc4;
         border-radius: 25px;
     }
     .category-scrollbar > button:hover > span {
-        border-top: 1px solid rgb(116 185 110);
+        border-top: 1px solid #55efc4;
     }
 </style>
