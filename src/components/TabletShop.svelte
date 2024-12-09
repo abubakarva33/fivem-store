@@ -6,7 +6,7 @@
 <div class="h-screen w-screen flex items-center justify-center bg-transparent">
     <!-- Tablet Frame -->
     <div
-        class="tablet-screen bg-gray-900 w-[640px] h-[360px] rounded-[1.5rem] shadow-lg border-8 border-gray-800 relative"
+        class="tablet-screen w-[640px] h-[360px] rounded-[1.5rem] shadow-lg border-8 border-gray-800 relative"
     >
         <!-- Camera Hole -->
         <div

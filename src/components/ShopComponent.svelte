@@ -12,16 +12,23 @@
     let selectedCategory: any = 'All';
     let filteredItems: any[] = [];
     let cart: any[] = [];
-    let hoveredItem = null;
+    let hoveredItem: any = null;
 
-    function filterItems(category: any) {
+    function filterItems(category: string) {
         selectedCategory = category;
-        filteredItems =
-            category === 'All'
-                ? Object.values(shopData.shopItems)
-                : Object.values(shopData.shopItems).filter(
-                      item => item.page === category,
-                  );
+
+        if (shopData?.shopItems) {
+            filteredItems =
+                category === 'All'
+                    ? Object.values(shopData.shopItems)
+                    : Object.values(shopData.shopItems).filter(
+                          item =>
+                              shopData.shopCategory[item.page]?.name ===
+                              category,
+                      );
+        } else {
+            filteredItems = [];
+        }
     }
 
     function addToCart(item) {
@@ -94,6 +101,8 @@
 
     // Initialize filteredItems with all items
     filteredItems = Object.values(shopData.shopItems);
+
+    console.log(shopData.shopItems);
 </script>
 
 <!-- ShopComponent -->

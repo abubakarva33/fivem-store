@@ -1,22 +1,187 @@
-import { DebugItem } from '@typings/events'
-import { toggleVisible } from './visibility'
-import { Send } from '@enums/events'
-import { DebugEventSend, SendEvent } from '@utils/eventsHandlers'
+import { DebugItem } from '@typings/events';
+import { toggleVisible } from './visibility';
+import { Receive, Send } from '@enums/events';
+import { DebugEventSend, SendEvent } from '@utils/eventsHandlers';
 
 /**
  * The debug actions that will show up in the debug menu.
  */
+const shopDebugData = {
+    shopCategory: {
+        0: { name: 'Foolds', icon: 'fa-utensils' },
+        1: { name: 'Salad', icon: 'fa-bowl-rice' },
+        2: { name: 'Drinks', icon: 'fa-glass-water' },
+    },
+    shopName: 'Pearls',
+    shopImage: './images/pearls.png',
+    shopDescription: 'Welcome to Pearls, how can we help you today?',
+    shopItems: {
+        gourmet_double_burger: {
+            name: 'Gourmet Double Burger',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        dom_perignon: {
+            name: 'Dom Perignon',
+            price: 500,
+            stock: 500,
+            page: 2,
+        },
+        steak_and_lobster_meal: {
+            name: 'Steak & Lobster Meal',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        oysters_half_shell: {
+            name: 'Oysters Half Shell',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        crab_legs_meal: {
+            name: 'Crab Legs Meal',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        tropical_chicken_salad: {
+            name: 'Tropical Chicken Salad',
+            price: 500,
+            stock: 500,
+            page: 1,
+        },
+        side_caesar_salad: {
+            name: 'Side Caesar Salad',
+            price: 500,
+            stock: 500,
+            page: 1,
+        },
+        ps_dr_pepper: {
+            name: 'Dr Pepper',
+            price: 500,
+            stock: 500,
+            page: 2,
+        },
+        tilapia_fish_meal: {
+            name: 'Tilapia Fish Meal',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        shrimp_and_crab_dip: {
+            name: 'Shrimp & Crab Dip',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        fried_scallops: {
+            name: 'Fried Scallops',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        crab_cakes: { name: 'Crab Cakes', price: 500, stock: 500, page: 0 },
+        patron_margarita: {
+            name: 'Patron Margarita',
+            price: 500,
+            stock: 500,
+            page: 2,
+        },
+        shrimp_alfredo: {
+            name: 'Shrimp Alfredo',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        glazed_salmon: {
+            name: 'Glazed Salmon',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        hennessy_shot: {
+            name: 'Hennessy Shot',
+            price: 500,
+            stock: 500,
+            page: 2,
+        },
+        upeel_shrimp: {
+            name: 'U-Peel Shrimp',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        baby_lobster_pasta: {
+            name: 'Baby Lobster Pasta',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        chicken_caesar_salad: {
+            name: 'Chicken Caesar Salad',
+            price: 500,
+            stock: 500,
+            page: 1,
+        },
+        catfish: { name: 'Catfish', price: 500, stock: 500, page: 0 },
+        salmon_caesar_salad: {
+            name: 'Salmon Caesar Salad',
+            price: 500,
+            stock: 500,
+            page: 1,
+        },
+        shrimp_pasta: {
+            name: 'Shrimp Pasta',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        ps_coca_cola: {
+            name: 'Ccoca Cola',
+            price: 500,
+            stock: 500,
+            page: 2,
+        },
+        pearls_coffee: {
+            name: 'Pearls Coffee',
+            price: 500,
+            stock: 500,
+            page: 2,
+        },
+        ps_sprite: { name: 'Sprite', price: 500, stock: 500, page: 2 },
+        lobster_bisque: {
+            name: 'Lobster Bisque',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        shells_clam_chowder: {
+            name: 'Shells Clam Chowder',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+        fried_mushrooms: {
+            name: 'Fried Mushrooms',
+            price: 500,
+            stock: 500,
+            page: 0,
+        },
+    },
+};
 const SendDebuggers: DebugItem[] = [
     {
         label: 'Visibility',
         actions: [
             {
-                label: 'True',
-                action: () => toggleVisible(true),
+                label: 'Show',
+                action: () => DebugEventSend(Receive.visible, shopDebugData),
             },
             {
-                label: 'False',
-                action: () => toggleVisible(false),
+                label: 'Hide',
+                action: () => DebugEventSend(Receive.visible, false),
             },
         ],
     },
@@ -73,10 +238,18 @@ const SendDebuggers: DebugItem[] = [
                 label: 'Emulates a POST To Client and get back a response.',
                 type: 'text',
                 placeholder: 'Type text to reverse.',
-                action: (value: string) => SendEvent("debug", value).then((reversed: string) => console.log(reversed,'color: red', 'color: white', 'color: green')),
+                action: (value: string) =>
+                    SendEvent('debug', value).then((reversed: string) =>
+                        console.log(
+                            reversed,
+                            'color: red',
+                            'color: white',
+                            'color: green',
+                        ),
+                    ),
             },
         ],
     },
-]
+];
 
-export default SendDebuggers
+export default SendDebuggers;
