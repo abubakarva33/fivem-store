@@ -105,7 +105,6 @@
                 on:wheel={handleWheel}
             >
                 <button
-                    class="px-4 mb-2 text-lg text-gray-700 bg-gray-200 hover:bg-gray-300 rounded"
                     class:selected={selectedCategory === 'All'}
                     on:click={() => filterItems('All')}
                 >
@@ -113,7 +112,6 @@
                 </button>
                 {#each Object.values(shopData.shopCategory) as category}
                     <button
-                        class="px-4 mb-2 text-lg text-gray-700 bg-gray-200 hover:bg-gray-300 rounded"
                         class:selected={selectedCategory === category.name}
                         on:click={() => filterItems(category.name)}
                     >
@@ -172,7 +170,7 @@
             <img
                 src={'/images/TextBlack.png'}
                 alt="images not found"
-                class="w-32 h-32 mb-1"
+                class="w-28 h-28 mb-1"
             />
             <h3 class="text-lg text-center text-gray-700 font-semibold">
                 {shopData.shopName}
@@ -324,5 +322,30 @@
         height: 60px;
         object-fit: cover;
         border-radius: 6px;
+    }
+    .category-scrollbar > button {
+        font-family: PFDinDisplayPro;
+        background-color: #040404ad;
+        color: rgba(255, 255, 255, 0.55);
+        text-transform: uppercase;
+        font-size: 11px;
+        border-bottom: 1.5px solid;
+        margin: 0% 0.5%;
+        transition: 0.25s ease-in-out;
+        -webkit-transition: 0.25s ease-in-out;
+        text-align: center;
+        line-height: normal;
+        padding: 4px 16px;
+        border-radius: 5px;
+    }
+    .category-scrollbar > button:hover {
+        background: linear-gradient(
+            0deg,
+            rgb(112 155 110) 0%,
+            rgb(88 111 86) 45.05%,
+            rgb(0 0 0 / 71%) 74.14%
+        );
+        border-bottom: 1.5px solid rgb(116 185 110);
+        border-radius: 25px;
     }
 </style>
