@@ -108,14 +108,14 @@
                     class:selected={selectedCategory === 'All'}
                     on:click={() => filterItems('All')}
                 >
-                    <span class="hover:border-t">All</span>
+                    <span>All</span>
                 </button>
                 {#each Object.values(shopData.shopCategory) as category}
                     <button
                         class:selected={selectedCategory === category.name}
                         on:click={() => filterItems(category.name)}
                     >
-                        <span class="hover:border-t">{category.name}</span>
+                        <span>{category.name}</span>
                     </button>
                 {/each}
             </div>
@@ -347,5 +347,8 @@
         );
         border-bottom: 1.5px solid rgb(116 185 110);
         border-radius: 25px;
+    }
+    .category-scrollbar > button:hover > span {
+        border-top: 1px solid rgb(116 185 110);
     }
 </style>
