@@ -4,12 +4,15 @@
     import { SHOPDATA } from '@stores/stores';
     import { get } from 'svelte/store';
     import { dummyShopData } from '@utils/dummyData';
+    import { prefersReducedMotion } from 'svelte/motion';
+    import { fly } from 'svelte/transition';
 
     // let shopData = get(SHOPDATA);
     let shopData = dummyShopData;
     let selectedCategory: any = 'All';
     let filteredItems: any[] = [];
     let cart: any[] = [];
+    let hoveredItem = null;
 
     function filterItems(category: any) {
         selectedCategory = category;
@@ -194,24 +197,34 @@
                 {:else}
                     <ul>
                         {#each cart as item}
-                            <li class="cart-item text-gray-800 text-sm">
-                                <button
-                                    class="px-2 bg-blue-300 rounded mr-2"
-                                    on:click={() => decrementQuantity(item)}
-                                    >-</button
-                                >
-                                <span class="flex-1 text-left">{item.name}</span
-                                >
-                                <span
-                                    >{item.quantity > 1
-                                        ? `${item.quantity}x `
-                                        : ''}{item.price}$</span
-                                >
-                                <button
-                                    class="px-2 bg-blue-300 rounded ml-2"
-                                    on:click={() => incrementQuantity(item)}
-                                    >+</button
-                                >
+                            <li
+                                class="cart-item text-gray-800 text-sm"
+                                on:mouseenter={() => (hoveredItem = item.name)}
+                                on:mouseleave={() => (hoveredItem = null)}
+                            >
+                                {#if hoveredItem === item.name}
+                                    <button
+                                        class="px-2 bg-blue-300 rounded mr-2"
+                                        on:click={() => decrementQuantity(item)}
+                                        >-</button
+                                    >
+                                {/if}
+                                <span>{item.name}</span>
+                                {#if hoveredItem !== item.name}
+                                    <span>
+                                        {item.quantity > 1
+                                            ? `${item.quantity}x `
+                                            : ''}{item.price}$
+                                    </span>
+                                {/if}
+
+                                {#if hoveredItem === item.name}
+                                    <button
+                                        class="px-2 bg-blue-300 rounded ml-2"
+                                        on:click={() => incrementQuantity(item)}
+                                        >+</button
+                                    >
+                                {/if}
                             </li>
                         {/each}
                     </ul>
@@ -264,10 +277,6 @@
         transition:
             transform 0.3s ease,
             box-shadow 0.3s ease;
-    }
-    .cart-item:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     .category-scrollbar {
         overflow-x: auto;
