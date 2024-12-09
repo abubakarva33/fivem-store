@@ -331,8 +331,8 @@
         font-size: 11px;
         border-bottom: 1.5px solid;
         margin: 0% 0.5%;
-        transition: 0.25s ease-in-out;
-        -webkit-transition: 0.25s ease-in-out;
+        transition: 0.8s ease-in-out;
+        /* -webkit-transition: 0.8s ease-in-out; */
         text-align: center;
         line-height: normal;
         padding: 4px 16px;
