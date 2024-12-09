@@ -209,7 +209,20 @@
                                         >-</button
                                     >
                                 {/if}
-                                <span>{item.name}</span>
+                                <span>
+                                    {item.name.length > 15 &&
+                                    hoveredItem === item.name &&
+                                    item.quantity > 1
+                                        ? item.name.slice(0, 15) + '...'
+                                        : item.name}
+                                    {#if hoveredItem === item.name}
+                                        <span>
+                                            {item.quantity > 1
+                                                ? item.quantity + 'x '
+                                                : ''}
+                                        </span>
+                                    {/if}
+                                </span>
                                 {#if hoveredItem !== item.name}
                                     <span>
                                         {item.quantity > 1
