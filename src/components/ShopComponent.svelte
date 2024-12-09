@@ -108,14 +108,14 @@
                     class:selected={selectedCategory === 'All'}
                     on:click={() => filterItems('All')}
                 >
-                    All
+                    <span class="hover:border-t">All</span>
                 </button>
                 {#each Object.values(shopData.shopCategory) as category}
                     <button
                         class:selected={selectedCategory === category.name}
                         on:click={() => filterItems(category.name)}
                     >
-                        {category.name}
+                        <span class="hover:border-t">{category.name}</span>
                     </button>
                 {/each}
             </div>
