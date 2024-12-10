@@ -5,7 +5,9 @@
     import { get } from 'svelte/store';
     import { dummyShopData } from '@utils/dummyData';
     import { prefersReducedMotion } from 'svelte/motion';
-    import { fly } from 'svelte/transition';
+    import { crossfade, fade, fly, scale, slide } from 'svelte/transition';
+    import { flip } from 'svelte/animate';
+    import { cubicIn, cubicOut } from 'svelte/easing';
 
     // let shopData = get(SHOPDATA);
     let shopData = dummyShopData;
@@ -13,6 +15,17 @@
     let filteredItems: any[] = [];
     let cart: any[] = [];
     let hoveredItem: any = null;
+
+    // function filterItems(category) {
+    // 	selectedCategory = category;
+
+    // 	// Update filteredItems reactively to trigger DOM changes
+    // 	filteredItems = category === 'All'
+    // 		? Object.values(shopData.shopItems)
+    // 		: Object.values(shopData.shopItems).filter(
+    // 				item => shopData.shopCategory[item.page]?.name === category,
+    // 		  );
+    // }
 
     function filterItems(category: string) {
         selectedCategory = category;
@@ -135,8 +148,14 @@
             <!-- Items -->
             <div class="item-scrollbar">
                 <div class="grid grid-cols-3 gap-2">
-                    {#each filteredItems as item}
-                        <div class="item-card">
+                    {#each filteredItems as item (item?.name)}
+                        <div
+                            animate:flip={{ duration: 500, easing: cubicOut }}
+                            transition:scale={{
+                                duration: 500,
+                            }}
+                            class="item-card"
+                        >
                             <div
                                 class="item-details flex flex-col justify-between"
                             >
@@ -198,7 +217,7 @@
             <h4 class="text-base text-center text-gray-600 font-semibold mb-2">
                 Shopping Cart
             </h4>
-            <div class="cart border p-1 rounded">
+            <div class="cart p-1 rounded">
                 {#if cart.length === 0}
                     <p class="text-red-600 text-sm text-center font-semibold">
                         Cart is empty
@@ -207,7 +226,7 @@
                     <ul>
                         {#each cart as item}
                             <li
-                                class="cart-item text-gray-800 text-sm"
+                                class="cart-item text-sm"
                                 on:mouseenter={() => (hoveredItem = item.name)}
                                 on:mouseleave={() => (hoveredItem = null)}
                             >
@@ -293,9 +312,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid #e5e7eb;
-        padding: 2px;
+        /* border: 1px solid #e5e7eb; */
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 7px;
         border-radius: 4px;
+        margin-bottom: 5px;
         transition:
             transform 0.3s ease,
             box-shadow 0.3s ease;
@@ -307,22 +328,22 @@
         scroll-behavior: smooth; /* Enable smooth scrolling */
     }
     .category-scrollbar::-webkit-scrollbar {
-        height: 4px; /* Set the height of the scrollbar */
+        height: 2px; /* Set the height of the scrollbar */
     }
     .category-scrollbar::-webkit-scrollbar-thumb {
         background-color: #ccc; /* Set the color of the scrollbar thumb */
-        border-radius: 4px; /* Set the border radius of the scrollbar thumb */
+        border-radius: 2px; /* Set the border radius of the scrollbar thumb */
     }
     .item-scrollbar {
         overflow-y: auto;
         height: 300px;
     }
     .item-scrollbar::-webkit-scrollbar {
-        width: 4px; /* Set the width of the scrollbar */
+        width: 2px; /* Set the width of the scrollbar */
     }
     .item-scrollbar::-webkit-scrollbar-thumb {
         background-color: #ccc; /* Set the color of the scrollbar thumb */
-        border-radius: 4px; /* Set the border radius of the scrollbar thumb */
+        border-radius: 2px; /* Set the border radius of the scrollbar thumb */
     }
     .item-card {
         display: flex;
@@ -330,12 +351,10 @@
         align-items: center;
         padding: 5px;
         border-radius: 8px;
-        transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+        transition: transform 0.3s ease;
         background: linear-gradient(
             90deg,
-            rgba(255, 255, 255, 0.07) 0%,
+            rgba(255, 255, 255, 0.1) 0%,
             rgba(255, 255, 255, 0) 80.34%
         );
         backdrop-filter: blur(4px);
@@ -364,7 +383,7 @@
     }
     .category-scrollbar > button {
         font-family: PFDinDisplayPro;
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.08);
         border-radius: 5px;
         color: rgba(255, 255, 255, 0.55);
         display: block;
