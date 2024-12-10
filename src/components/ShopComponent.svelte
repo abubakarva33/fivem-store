@@ -133,46 +133,46 @@
             </div>
 
             <!-- Items -->
-            <div class="item-scrollbar grid grid-cols-3 gap-2">
-                {#each filteredItems as item}
-                    <div class="item-card">
-                        <div
-                            class="item-details flex flex-col justify-between h-full"
-                        >
-                            <div>
-                                <h3
-                                    class="text-base text-gray-800 font-semibold"
-                                >
-                                    {item.name}
-                                </h3>
-                                <p class="text-gray-600 text-sm">
-                                    {shopData.shopCategory[item.page].name}
-                                </p>
-                                {#if item.stock > 0}
-                                    <p class="text-gray-500 text-sm">
-                                        Stock: {item.stock}
-                                    </p>
-                                {:else}
-                                    <p class="text-red-500 text-sm">
-                                        Out of stock
-                                    </p>
-                                {/if}
-                            </div>
-                            <button
-                                class="mt-2 px-[15px] py-[2px] bg-slate-700 hover:bg-slate-800 text-white text-sm rounded self-start"
-                                on:click={() => addToCart(item)}
-                                disabled={item.stock === 0}
+            <div class="item-scrollbar">
+                <div class="grid grid-cols-3 gap-2">
+                    {#each filteredItems as item}
+                        <div class="item-card">
+                            <div
+                                class="item-details flex flex-col justify-between"
                             >
-                                ${item.price}
-                            </button>
+                                <div class="text-white">
+                                    <h3 class="text-base font-semibold">
+                                        {item.name}
+                                    </h3>
+                                    <p class=" text-sm text-[#ffffff8c]">
+                                        {shopData.shopCategory[item.page].name}
+                                    </p>
+                                    {#if item.stock > 0}
+                                        <p class="text-sm text-[#ffffff8c]">
+                                            Stock: {item.stock}
+                                        </p>
+                                    {:else}
+                                        <p class="text-red-500 text-sm">
+                                            Out of stock
+                                        </p>
+                                    {/if}
+                                </div>
+                                <button
+                                    class="mt-2 px-[15px] py-[2px] bg-slate-700 hover:bg-slate-800 text-white text-sm rounded self-start"
+                                    on:click={() => addToCart(item)}
+                                    disabled={item.stock === 0}
+                                >
+                                    ${item.price}
+                                </button>
+                            </div>
+                            <img
+                                src="/images/dummyImage.png"
+                                alt={item.name}
+                                class="item-image"
+                            />
                         </div>
-                        <img
-                            src="/images/dummyImage.png"
-                            alt={item.name}
-                            class="item-image"
-                        />
-                    </div>
-                {/each}
+                    {/each}
+                </div>
             </div>
         </div>
     </div>
@@ -189,7 +189,7 @@
             <h3 class="text-lg text-center text-gray-700 font-semibold">
                 {shopData.shopName}
             </h3>
-            <p class="text-center text-gray-600 mt-1 text-sm">
+            <p class="text-center mt-1 text-sm">
                 {shopData.shopDescription}
             </p>
         </div>
@@ -340,12 +340,9 @@
         );
         backdrop-filter: blur(4px);
     }
-    .item-card:hover {
-        /* transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
-    }
+
     .item-details > div > h3 {
-        height: 30px;
+        height: 27px;
         line-height: 12px;
         white-space: normal;
         display: -webkit-box;

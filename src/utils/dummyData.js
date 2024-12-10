@@ -9,7 +9,7 @@ export let dummyShopData = {
     shopDescription: 'Welcome to Pearls, how can we help you today?',
     shopItems: {
         gourmet_double_burger: {
-            name: 'Gourmet Double Burger',
+            name: 'Gourmet Double Burger Gourmet Double Burger',
             price: 500,
             stock: 500,
             page: 0,
