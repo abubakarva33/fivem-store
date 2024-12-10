@@ -333,11 +333,12 @@
         transition:
             transform 0.3s ease,
             box-shadow 0.3s ease;
-        background-image: linear-gradient(
-            to right,
-            rgb(0 0 0 / 24%),
-            rgb(0 0 0 / 0%)
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.07) 0%,
+            rgba(255, 255, 255, 0) 80.34%
         );
+        backdrop-filter: blur(4px);
     }
     .item-card:hover {
         /* transform: translateY(-1px);
@@ -366,24 +367,42 @@
     }
     .category-scrollbar > button {
         font-family: PFDinDisplayPro;
-        background-color: #0000005c;
-        color: #ffffff;
-        text-transform: uppercase;
-        font-size: 11px;
-        border-bottom: 1.5px solid;
-        margin: 0% 0.5%;
-        transition: 0.8s ease-in-out;
-        text-align: center;
-        line-height: normal;
-        padding: 4px 16px;
+        background: rgba(255, 255, 255, 0.03);
         border-radius: 5px;
+        color: rgba(255, 255, 255, 0.55);
+        display: block;
+        text-transform: uppercase;
+        font-size: 8px;
+        padding: 4px 16px;
+        font-weight: 600;
+        border-bottom: 1.5px solid rgba(116, 185, 110, 0);
+        min-width: 70px;
+        margin: 0% 0.5%;
+        overflow: hidden;
+        transition: 0.25s ease-in-out;
+        -webkit-transition: 0.25s ease-in-out;
+    }
+    .category-scrollbar > button > span {
+        display: block;
+        max-width: 30px;
+        height: 1px;
+        background: transparent;
+        margin: 0px auto 8px;
+        transition: 0.25s ease-in-out;
+        -webkit-transition: 0.25s ease-in-out;
     }
     .category-scrollbar > button:hover {
-        background-image: linear-gradient(315deg, #55efc4 0%, #000000 74%);
-        border-bottom: 1.5px solid #55efc4;
+        background: linear-gradient(
+            0deg,
+            rgba(116, 185, 110, 0.15) 0%,
+            rgba(116, 185, 110, 0.018) 45.05%,
+            rgba(116, 185, 110, 0) 74.14%
+        );
+        border-bottom: 1.5px solid rgba(116, 185, 110, 0.65);
+        filter: drop-shadow(0px 0px 73px rgba(116, 185, 110, 0.05));
         border-radius: 25px;
     }
     .category-scrollbar > button:hover > span {
-        border-top: 1px solid #55efc4;
+        background: rgba(116, 185, 110, 0.65);
     }
 </style>

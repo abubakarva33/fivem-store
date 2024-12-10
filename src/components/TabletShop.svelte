@@ -14,7 +14,7 @@
         ></div>
         <!-- Tablet Screen -->
         <div
-            class="bg-gray-100 w-full h-full rounded-[0.8rem] overflow-hidden p-2 flex flex-col items-center justify-center"
+            class=" w-full h-full rounded-[0.8rem] overflow-hidden p-2 flex flex-col items-center justify-center"
         >
             <!-- Tablet Content -->
             <ShopComponent />
@@ -30,65 +30,69 @@
     .tablet-screen {
         transform: scale(1);
         transition: transform 0.3s ease-in-out;
+        background-image: url('/images/tabletBg.png');
+        background-size: cover;
+        background-position: bottom center;
+        background-repeat: no-repeat;
     }
 
     @media (min-width: 3840px) {
         .tablet-screen {
-            transform: scale(3.5);
+            zoom: 350%;
         }
     }
 
     @media (min-width: 2560px) and (max-width: 3839px) {
         .tablet-screen {
-            transform: scale(3);
+            zoom: 300%;
         }
     }
 
     @media (min-width: 1920px) and (max-width: 2559px) {
         .tablet-screen {
-            transform: scale(2.5);
+            zoom: 250%;
         }
     }
 
     @media (min-width: 1600px) and (max-width: 1919px) {
         .tablet-screen {
-            transform: scale(2);
+            zoom: 200%;
         }
     }
 
     @media (min-width: 1366px) and (max-width: 1599px) {
         .tablet-screen {
-            transform: scale(1.75);
+            zoom: 175%;
         }
     }
 
     @media (min-width: 1280px) and (max-width: 1365px) {
         .tablet-screen {
-            transform: scale(1.6);
+            zoom: 160%;
         }
     }
 
     @media (min-width: 1024px) and (max-width: 1279px) {
         .tablet-screen {
-            transform: scale(1.5);
+            zoom: 150%;
         }
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
         .tablet-screen {
-            transform: scale(1.25);
+            zoom: 125%;
         }
     }
 
     @media (min-width: 576px) and (max-width: 767px) {
         .tablet-screen {
-            transform: scale(1);
+            zoom: 100%;
         }
     }
 
     @media (max-width: 575px) {
         .tablet-screen {
-            transform: scale(0.75);
+            zoom: 75%;
         }
     }
 </style>
