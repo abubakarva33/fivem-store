@@ -40,7 +40,7 @@
             setTimeout(() => {
                 const shuffledItems = shuffleArray(newFilteredItems);
                 filteredItems = [...shuffledItems];
-            }, 1);
+            }, 0);
         } else {
             filteredItems = [];
         }
