@@ -16,22 +16,19 @@
     let cart: any[] = [];
     let hoveredItem: any = null;
 
-    // function filterItems(category) {
-    // 	selectedCategory = category;
-
-    // 	// Update filteredItems reactively to trigger DOM changes
-    // 	filteredItems = category === 'All'
-    // 		? Object.values(shopData.shopItems)
-    // 		: Object.values(shopData.shopItems).filter(
-    // 				item => shopData.shopCategory[item.page]?.name === category,
-    // 		  );
-    // }
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
     function filterItems(category: string) {
         selectedCategory = category;
 
         if (shopData?.shopItems) {
-            filteredItems =
+            const newFilteredItems =
                 category === 'All'
                     ? Object.values(shopData.shopItems)
                     : Object.values(shopData.shopItems).filter(
@@ -39,6 +36,11 @@
                               shopData.shopCategory[item.page]?.name ===
                               category,
                       );
+            filteredItems = newFilteredItems;
+            setTimeout(() => {
+                const shuffledItems = shuffleArray(newFilteredItems);
+                filteredItems = [...shuffledItems];
+            }, 1);
         } else {
             filteredItems = [];
         }
@@ -115,7 +117,7 @@
     // Initialize filteredItems with all items
     filteredItems = Object.values(shopData.shopItems);
 
-    console.log(shopData.shopItems);
+    console.log({ filteredItems });
 </script>
 
 <!-- ShopComponent -->
@@ -151,9 +153,6 @@
                     {#each filteredItems as item (item?.name)}
                         <div
                             animate:flip={{ duration: 500, easing: cubicOut }}
-                            transition:scale={{
-                                duration: 500,
-                            }}
                             class="item-card"
                         >
                             <div
