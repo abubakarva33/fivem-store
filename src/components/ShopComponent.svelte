@@ -135,7 +135,7 @@
         <div class="flex flex-col">
             <!-- Categories -->
             <div
-                class="category-scrollbar flex gap-2 mb-4"
+                class="category-scrollbar flex mb-4 pb-2"
                 on:wheel={handleWheel}
             >
                 <button
@@ -290,7 +290,18 @@
 
 <style>
     .selected {
-        background-color: #91a8ee;
+        background: linear-gradient(
+            0deg,
+            rgba(116, 185, 110, 0.15) 0%,
+            rgba(116, 185, 110, 0.018) 45.05%,
+            rgba(116, 185, 110, 0) 74.14%
+        ) !important;
+        border-bottom: 1.5px solid rgba(116, 185, 110, 0.65) !important;
+        filter: drop-shadow(0px 0px 73px rgba(116, 185, 110, 0.05)) !important;
+        border-radius: 25px !important;
+    }
+    .selected > span {
+        background: rgba(116, 185, 110, 0.65) !important;
     }
     .cart {
         height: 130px; /* Set a fixed height */
@@ -411,7 +422,8 @@
         background: rgba(255, 255, 255, 0.08);
         border-radius: 5px;
         color: rgba(255, 255, 255, 0.9);
-        display: block;
+        display: flex;
+        justify-content: center;
         text-transform: uppercase;
         font-size: 9px;
         padding: 5px 15px;

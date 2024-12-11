@@ -1,8 +1,12 @@
 export let dummyShopData = {
     shopCategory: {
-        0: { name: 'Foolds', icon: 'fa-utensils' },
+        0: { name: 'Fooldsgghfd', icon: 'fa-utensils' },
         1: { name: 'Salad', icon: 'fa-bowl-rice' },
         2: { name: 'Drinks', icon: 'fa-glass-water' },
+        3: { name: 'Drinks', icon: 'fa-glass-water' },
+        4: { name: 'Drinks', icon: 'fa-glass-water' },
+        5: { name: 'Drinksgff', icon: 'fa-glass-water' },
+        6: { name: 'Drinksfghfgh', icon: 'fa-glass-water' },
     },
     shopName: 'Pearls',
     shopImage: './images/pearls.png',
