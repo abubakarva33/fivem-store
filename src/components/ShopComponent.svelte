@@ -135,7 +135,7 @@
         <div class="flex flex-col">
             <!-- Categories -->
             <div
-                class="category-scrollbar flex gap-2 mb-4"
+                class="category-scrollbar flex gap-2 mb-4 pb-2"
                 on:wheel={handleWheel}
             >
                 <button
@@ -211,10 +211,10 @@
                 alt="images not found"
                 class="w-28 h-28 mb-1"
             />
-            <h3 class="text-center text-slate-100 text-xl font-bold">
+            <h3 class="text-center text-slate-100 text-xl font-bold overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]">
                 {shopData.shopName}
             </h3>
-            <p class="text-center mt-1 text-sm">
+            <p class="text-center mt-1 text-sm overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]">
                 {shopData.shopDescription}
             </p>
         </div>
