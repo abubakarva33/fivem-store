@@ -4,15 +4,14 @@
     import { SHOPDATA } from '@stores/stores';
     import { get } from 'svelte/store';
     import { dummyShopData } from '@utils/dummyData';
-    import { prefersReducedMotion } from 'svelte/motion';
-    import { crossfade, fade, fly, scale, slide } from 'svelte/transition';
     import { flip } from 'svelte/animate';
-    import { cubicIn, cubicOut } from 'svelte/easing';
+    import { cubicOut } from 'svelte/easing';
 
     // let shopData = get(SHOPDATA);
     let shopData = dummyShopData;
     let selectedCategory: any = 'All';
     let filteredItems: any[] = [];
+    let visuallyShuffledItems: any[] = [];
     let cart: any[] = [];
     let hoveredItem: any = null;
 
@@ -36,13 +35,23 @@
                               shopData.shopCategory[item.page]?.name ===
                               category,
                       );
+
+            // Set actual filtered items
             filteredItems = newFilteredItems;
+
+            // Apply the shuffle effect temporarily
             setTimeout(() => {
-                const shuffledItems = shuffleArray(newFilteredItems);
-                filteredItems = [...shuffledItems];
+                const shuffledItems = shuffleArray([...newFilteredItems]);
+                visuallyShuffledItems = [...shuffledItems]; // Temporary shuffled state
+
+                // Revert back to the actual filtered items after animation
+                setTimeout(() => {
+                    visuallyShuffledItems = [...filteredItems];
+                }, 0); // Match animation duration
             }, 0);
         } else {
             filteredItems = [];
+            visuallyShuffledItems = [];
         }
     }
 
@@ -116,8 +125,7 @@
 
     // Initialize filteredItems with all items
     filteredItems = Object.values(shopData.shopItems);
-
-    console.log({ filteredItems });
+    visuallyShuffledItems = Object.values(shopData.shopItems);
 </script>
 
 <!-- ShopComponent -->
@@ -150,7 +158,7 @@
             <!-- Items -->
             <div class="item-scrollbar">
                 <div class="grid grid-cols-3 gap-2">
-                    {#each filteredItems as item (item?.name)}
+                    {#each visuallyShuffledItems as item (item?.name)}
                         <div
                             animate:flip={{ duration: 500, easing: cubicOut }}
                             class="item-card"
