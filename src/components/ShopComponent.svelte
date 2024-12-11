@@ -13,7 +13,6 @@
     let filteredItems: any[] = [];
     let visuallyShuffledItems: any[] = [];
     let cart: any[] = [];
-    let hoveredItem: any = null;
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -208,11 +207,11 @@
         <div class="flex flex-col items-center">
             <!-- src={shopData?.shopLogo} -->
             <img
-                src={'/images/TextBlack.png'}
+                src={'/images/TextWhite.png'}
                 alt="images not found"
                 class="w-28 h-28 mb-1"
             />
-            <h3 class="text-lg text-center text-gray-700 font-semibold">
+            <h3 class="text-center text-slate-100 text-xl font-bold">
                 {shopData.shopName}
             </h3>
             <p class="text-center mt-1 text-sm">
@@ -221,7 +220,7 @@
         </div>
         <!-- Cart -->
         <div class="mt-2">
-            <h4 class="text-base text-center text-gray-600 font-semibold mb-2">
+            <h4 class="text-base text-center text-slate-100 font-semibold mb-2">
                 Shopping Cart
             </h4>
             <div class="cart p-1 rounded">
@@ -232,18 +231,14 @@
                 {:else}
                     <ul>
                         {#each cart as item}
-                            <li
-                                class="cart-item text-sm"
-                                on:mouseenter={() => (hoveredItem = item.name)}
-                                on:mouseleave={() => (hoveredItem = null)}
-                            >
+                            <li class="cart-item text-sm">
                                 <div>
                                     {item.name.length > 21
                                         ? item.name.slice(0, 21) + '...'
                                         : item.name}
                                 </div>
                                 <button
-                                    class="px-2 bg-blue-300 rounded mr-2"
+                                    class="px-2 font-bold text-slate-100 bg-[#f8717166] rounded mr-2"
                                     on:click={() => decrementQuantity(item)}
                                     >-</button
                                 >
@@ -257,14 +252,14 @@
                                         : ''}
                                 </span>
                                 <button
-                                    class="px-2 bg-blue-300 rounded ml-2"
+                                    class="px-2 bg-slate-700 rounded ml-2"
                                     on:click={() => incrementQuantity(item)}
                                     >+</button
                                 >
                                 <div>
                                     {item.quantity > 1
                                         ? `${item.quantity}x - `
-                                        : ''}{item.price * item.quantity}
+                                        : ''}${item.price * item.quantity}
                                 </div>
                             </li>
                         {/each}
@@ -273,19 +268,19 @@
             </div>
             <!-- Total Price -->
             <div class="flex justify-between mt-4">
-                <span class="text-lg text-gray-500 font-semibold">Total</span>
-                <span class="text-lg text-red-600 font-semibold"
+                <span class="text-lg text-slate-100 font-semibold">Total</span>
+                <span class="text-lg text-[#2ff36d] font-semibold"
                     >${totalPrice()}</span
                 >
             </div>
             <!-- Pay and Clear Buttons -->
             <div class="flex justify-between mt-4">
                 <button
-                    class="flex-1 px-4 text-lg bg-green-500 hover:bg-green-600 text-white rounded mr-2"
+                    class="flex-1 px-4 py-1 text-lg bg-slate-700 hover:bg-slate-800 text-white rounded mr-2"
                     on:click={buyCartItems}>PAY</button
                 >
                 <button
-                    class="flex-1 px-4 text-lg bg-red-500 hover:bg-red-600 text-white rounded ml-2"
+                    class="flex-1 px-4 py-1 text-lg bg-[#ffffff14] hover:bg-[#ffffff26] text-white rounded ml-2"
                     on:click={clearCart}>CLEAR</button
                 >
             </div>
@@ -298,7 +293,7 @@
         background-color: #91a8ee;
     }
     .cart {
-        height: 135px; /* Set a fixed height */
+        height: 130px; /* Set a fixed height */
         overflow-y: auto; /* Enable vertical scrolling */
     }
     .cart::-webkit-scrollbar {
@@ -309,6 +304,8 @@
         border-radius: 4px; /* Set the border radius of the scrollbar thumb */
     }
     .cart-item {
+        font-family: PFDinDisplayPro;
+        font-weight: 700;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -357,22 +354,22 @@
         scroll-behavior: smooth; /* Enable smooth scrolling */
     }
     .category-scrollbar::-webkit-scrollbar {
-        height: 2px; /* Set the height of the scrollbar */
+        height: 1px; /* Set the height of the scrollbar */
     }
     .category-scrollbar::-webkit-scrollbar-thumb {
-        background-color: #ccc; /* Set the color of the scrollbar thumb */
-        border-radius: 2px; /* Set the border radius of the scrollbar thumb */
+        background-color: #91a8ee; /* Set the color of the scrollbar thumb */
+        border-radius: 4px; /* Set the border radius of the scrollbar thumb */
     }
     .item-scrollbar {
         overflow-y: auto;
         height: 300px;
     }
     .item-scrollbar::-webkit-scrollbar {
-        width: 2px; /* Set the width of the scrollbar */
+        width: 1px; /* Set the width of the scrollbar */
     }
     .item-scrollbar::-webkit-scrollbar-thumb {
-        background-color: #ccc; /* Set the color of the scrollbar thumb */
-        border-radius: 2px; /* Set the border radius of the scrollbar thumb */
+        background-color: #91a8ee; /* Set the color of the scrollbar thumb */
+        border-radius: 4px; /* Set the border radius of the scrollbar thumb */
     }
     .item-card {
         display: flex;
@@ -390,7 +387,7 @@
     }
 
     .item-details > div > h3 {
-        height: 27px;
+        height: 25px;
         line-height: 12px;
         white-space: normal;
         display: -webkit-box;
@@ -411,14 +408,12 @@
         border-radius: 6px;
     }
     .category-scrollbar > button {
-        font-family: PFDinDisplayPro;
-        background: rgba(255, 255, 255, 0.08);
         border-radius: 5px;
-        color: rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, 0.9);
         display: block;
         text-transform: uppercase;
-        font-size: 8px;
-        padding: 4px 16px;
+        font-size: 9px;
+        padding: 5px 15px;
         font-weight: 600;
         border-bottom: 1.5px solid rgba(116, 185, 110, 0);
         min-width: 70px;
