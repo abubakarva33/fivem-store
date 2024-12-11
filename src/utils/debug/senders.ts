@@ -11,6 +11,13 @@ const shopDebugData = {
         0: { name: 'Foolds', icon: 'fa-utensils' },
         1: { name: 'Salad', icon: 'fa-bowl-rice' },
         2: { name: 'Drinks', icon: 'fa-glass-water' },
+        3: { name: 'Desserts', icon: 'fa-ice-cream' },
+        4: { name: 'Specials', icon: 'fa-star' },
+        5: { name: 'Appetizers', icon: 'fa-utensils' },
+        6: { name: 'Main Course', icon: 'fa-drumstick-bite' },
+        7: { name: 'Seafood', icon: 'fa-fish' },
+        8: { name: 'Beverages', icon: 'fa-coffee' },
+        9: { name: 'Sides', icon: 'fa-carrot' },
     },
     shopName: 'Pearls',
     shopImage: './images/pearls.png',
@@ -171,6 +178,7 @@ const shopDebugData = {
         },
     },
 };
+
 const SendDebuggers: DebugItem[] = [
     {
         label: 'Visibility',
