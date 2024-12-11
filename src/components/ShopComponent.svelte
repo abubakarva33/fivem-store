@@ -237,42 +237,35 @@
                                 on:mouseenter={() => (hoveredItem = item.name)}
                                 on:mouseleave={() => (hoveredItem = null)}
                             >
-                                {#if hoveredItem === item.name}
-                                    <button
-                                        class="px-2 bg-blue-300 rounded mr-2"
-                                        on:click={() => decrementQuantity(item)}
-                                        >-</button
-                                    >
-                                {/if}
+                                <div>
+                                    {item.name.length > 21
+                                        ? item.name.slice(0, 21) + '...'
+                                        : item.name}
+                                </div>
+                                <button
+                                    class="px-2 bg-blue-300 rounded mr-2"
+                                    on:click={() => decrementQuantity(item)}
+                                    >-</button
+                                >
+
                                 <span>
-                                    {item.name.length > 15 &&
-                                    hoveredItem === item.name &&
-                                    item.quantity > 1
+                                    {item.name.length > 15
                                         ? item.name.slice(0, 15) + '...'
                                         : item.name}
-                                    {#if hoveredItem === item.name}
-                                        <span>
-                                            {item.quantity > 1
-                                                ? item.quantity + 'x '
-                                                : ''}
-                                        </span>
-                                    {/if}
+                                    {item.quantity > 1
+                                        ? `${item.quantity}x `
+                                        : ''}
                                 </span>
-                                {#if hoveredItem !== item.name}
-                                    <span>
-                                        {item.quantity > 1
-                                            ? `${item.quantity}x `
-                                            : ''}{item.price}$
-                                    </span>
-                                {/if}
-
-                                {#if hoveredItem === item.name}
-                                    <button
-                                        class="px-2 bg-blue-300 rounded ml-2"
-                                        on:click={() => incrementQuantity(item)}
-                                        >+</button
-                                    >
-                                {/if}
+                                <button
+                                    class="px-2 bg-blue-300 rounded ml-2"
+                                    on:click={() => incrementQuantity(item)}
+                                    >+</button
+                                >
+                                <div>
+                                    {item.quantity > 1
+                                        ? `${item.quantity}x - `
+                                        : ''}{item.price * item.quantity}
+                                </div>
                             </li>
                         {/each}
                     </ul>
@@ -319,14 +312,43 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* border: 1px solid #e5e7eb; */
+        position: relative;
         background-color: rgba(255, 255, 255, 0.05);
         padding: 7px;
         border-radius: 4px;
         margin-bottom: 5px;
-        transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+        transition: transform 0.3s ease;
+        overflow: hidden;
+    }
+    .cart-item div:first-child {
+        transition: transform 0.3s ease;
+        position: absolute;
+        left: 5px;
+    }
+    .cart-item div:last-child {
+        transition: transform 0.3s ease;
+        position: absolute;
+        right: 5px;
+    }
+    .cart-item:hover div:last-child,
+    .cart-item:hover div:first-child {
+        bottom: -30px;
+    }
+    .cart-item button,
+    .cart-item span {
+        transform: translateY(30px);
+        transition: transform 0.3s ease;
+    }
+    .cart-item button,
+    .cart-item span {
+        transform: translateY(30px);
+        transition: transform 0.3s ease;
+    }
+    .cart-item:hover button {
+        transform: translateY(0px);
+    }
+    .cart-item:hover span {
+        transform: translateY(0px);
     }
     .category-scrollbar {
         overflow-x: auto;
