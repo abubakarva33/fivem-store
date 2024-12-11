@@ -408,6 +408,7 @@
         border-radius: 6px;
     }
     .category-scrollbar > button {
+        background: rgba(255, 255, 255, 0.08);
         border-radius: 5px;
         color: rgba(255, 255, 255, 0.9);
         display: block;
