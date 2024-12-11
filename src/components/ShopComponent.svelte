@@ -146,6 +146,10 @@
                 </button>
                 {#each Object.values(shopData.shopCategory) as category}
                     <button
+                        style="min-width: {category?.name?.length * 10}px;
+                   color: {selectedCategory === category.name
+                            ? 'black'
+                            : 'gray'}"
                         class:selected={selectedCategory === category.name}
                         on:click={() => filterItems(category.name)}
                     >
@@ -211,10 +215,14 @@
                 alt="images not found"
                 class="w-28 h-28 mb-1"
             />
-            <h3 class="text-center text-slate-100 text-xl font-bold overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]">
+            <h3
+                class="text-center text-slate-100 text-xl font-bold overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]"
+            >
                 {shopData.shopName}
             </h3>
-            <p class="text-center mt-1 text-sm overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]">
+            <p
+                class="text-center mt-1 text-sm overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]"
+            >
                 {shopData.shopDescription}
             </p>
         </div>
@@ -421,7 +429,7 @@
     .category-scrollbar > button {
         background: rgba(255, 255, 255, 0.08);
         border-radius: 5px;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.9) !important;
         display: flex;
         justify-content: center;
         text-transform: uppercase;
@@ -429,14 +437,15 @@
         padding: 5px 15px;
         font-weight: 600;
         border-bottom: 1.5px solid rgba(116, 185, 110, 0);
-        min-width: 70px;
+        min-width: 45px;
         margin: 0% 0.5%;
         overflow: hidden;
         transition: 0.25s ease-in-out;
         -webkit-transition: 0.25s ease-in-out;
     }
     .category-scrollbar > button > span {
-        display: block;
+        display: flex;
+        justify-content: center;
         max-width: 30px;
         height: 1px;
         background: transparent;
