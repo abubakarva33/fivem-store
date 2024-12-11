@@ -323,8 +323,7 @@
         border-radius: 4px; /* Set the border radius of the scrollbar thumb */
     }
     .cart-item {
-        font-family: PFDinDisplayPro;
-        font-weight: 700;
+        font-weight: 500;
         display: flex;
         justify-content: space-between;
         align-items: center;
