@@ -433,7 +433,7 @@
         justify-content: center;
         text-transform: uppercase;
         font-size: 9px;
-        padding: 5px 15px;
+        padding: 4px 15px 7px;
         font-weight: 600;
         border-bottom: 1.5px solid rgba(116, 185, 110, 0);
         min-width: 45px;
