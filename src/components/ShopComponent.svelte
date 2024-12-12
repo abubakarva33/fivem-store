@@ -133,6 +133,7 @@
         <!-- Categories and Items -->
         <div class="flex flex-col">
             <!-- Categories -->
+            <!-- Categories -->
             <div
                 class="category-scrollbar flex mb-4 pb-2"
                 on:wheel={handleWheel}
@@ -140,17 +141,19 @@
                 <button
                     class:selected={selectedCategory === 'All'}
                     on:click={() => filterItems('All')}
+                    disabled={selectedCategory === 'All'}
                 >
                     <span>All</span>
                 </button>
                 {#each Object.values(shopData.shopCategory) as category}
                     <button
-                        style="min-width: {category?.name?.length * 10}px;
-                   color: {selectedCategory === category.name
+                        style="min-width: {category?.name?.length *
+                            10}px; color: {selectedCategory === category.name
                             ? 'black'
                             : 'gray'}"
                         class:selected={selectedCategory === category.name}
                         on:click={() => filterItems(category.name)}
+                        disabled={selectedCategory === category.name}
                     >
                         <span>{category.name}</span>
                     </button>
@@ -160,7 +163,10 @@
             <!-- Items -->
             <div class="item-scrollbar">
                 <div class="grid grid-cols-3 gap-2">
-                    {console.log('visuallyShuffledItems', visuallyShuffledItems)}
+                    {console.log(
+                        'visuallyShuffledItems',
+                        visuallyShuffledItems,
+                    )}
                     {#each visuallyShuffledItems as item (item?.name)}
                         <div
                             animate:flip={{ duration: 500, easing: cubicOut }}
@@ -195,7 +201,9 @@
                                 </button>
                             </div>
                             <img
-                                src={shopData.shopInventoryImage + item.id + '.png'}
+                                src={shopData.shopInventoryImage +
+                                    item.id +
+                                    '.png'}
                                 alt={item.name}
                                 class="item-image"
                             />
