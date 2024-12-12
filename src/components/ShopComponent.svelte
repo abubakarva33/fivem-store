@@ -195,7 +195,7 @@
                                 </button>
                             </div>
                             <img
-                                src="/images/dummyImage.png"
+                                src={shopData.shopInventoryImage + item.image + '.png'}
                                 alt={item.name}
                                 class="item-image"
                             />

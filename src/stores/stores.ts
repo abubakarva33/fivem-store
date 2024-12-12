@@ -5,6 +5,7 @@ interface ISHOPDATA {
     shopName: string;
     shopLogo: string;
     shopDescription: string;
+    shopInventoryImage: string;
     shopCategory: {
         [key: number]: {
             name: string;

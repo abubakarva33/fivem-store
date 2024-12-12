@@ -22,6 +22,7 @@ const shopDebugData = {
     shopName: 'Pearls',
     shopImage: './images/pearls.png',
     shopDescription: 'Welcome to Pearls, how can we help you today?',
+    shopInventoryImage: 'nui://ox_inventory/web/images/',
     shopItems: {
         gourmet_double_burger: {
             name: 'Gourmet Double Burger',
