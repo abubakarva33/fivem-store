@@ -133,7 +133,6 @@
         <!-- Categories and Items -->
         <div class="flex flex-col">
             <!-- Categories -->
-            <!-- Categories -->
             <div
                 class="category-scrollbar flex mb-4 pb-2"
                 on:wheel={handleWheel}
@@ -163,10 +162,6 @@
             <!-- Items -->
             <div class="item-scrollbar">
                 <div class="grid grid-cols-3 gap-2">
-                    {console.log(
-                        'visuallyShuffledItems',
-                        visuallyShuffledItems,
-                    )}
                     {#each visuallyShuffledItems as item (item?.name)}
                         <div
                             animate:flip={{ duration: 500, easing: cubicOut }}
@@ -229,9 +224,11 @@
                 {shopData.shopName}
             </h3>
             <p
-                class="text-center mt-1 text-sm overflow-hidden whitespace-nowrap text-ellipsis max-w-[130px]"
+                class="text-center mt-1 text-sm"
             >
-                {shopData.shopDescription}
+                {shopData.shopDescription.length > 65
+                    ? shopData.shopDescription.slice(0, 65) + '...'
+                    : shopData.shopDescription}
             </p>
         </div>
         <!-- Cart -->
