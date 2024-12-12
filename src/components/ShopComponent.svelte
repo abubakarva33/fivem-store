@@ -1,14 +1,12 @@
 <script lang="ts">
-    import { ReceiveEvent, SendEvent } from '@utils/eventsHandlers';
-    import { Receive, Send } from '@enums/events';
+    import { SendEvent } from '@utils/eventsHandlers';
+    import { Send } from '@enums/events';
     import { SHOPDATA } from '@stores/stores';
     import { get } from 'svelte/store';
-    import { dummyShopData } from '@utils/dummyData';
     import { flip } from 'svelte/animate';
     import { cubicOut } from 'svelte/easing';
 
-    // let shopData = get(SHOPDATA);
-    let shopData = dummyShopData;
+    let shopData = get(SHOPDATA);
     let selectedCategory: any = 'All';
     let filteredItems: any[] = [];
     let visuallyShuffledItems: any[] = [];
@@ -119,6 +117,7 @@
     }
 
     function buyCartItems() {
+        console.log('Buying items:', cart);
         SendEvent(Send.buyItem, cart);
     }
 
@@ -161,6 +160,7 @@
             <!-- Items -->
             <div class="item-scrollbar">
                 <div class="grid grid-cols-3 gap-2">
+                    {console.log('visuallyShuffledItems', visuallyShuffledItems)}
                     {#each visuallyShuffledItems as item (item?.name)}
                         <div
                             animate:flip={{ duration: 500, easing: cubicOut }}
@@ -195,7 +195,7 @@
                                 </button>
                             </div>
                             <img
-                                src={shopData.shopInventoryImage + item.image + '.png'}
+                                src={shopData.shopInventoryImage + item.id + '.png'}
                                 alt={item.name}
                                 class="item-image"
                             />

@@ -14,6 +14,7 @@ interface ISHOPDATA {
     }
     shopItems: {
         [key: string]: {
+            id: string;
             name: string;
             price: number;
             stock: number;
