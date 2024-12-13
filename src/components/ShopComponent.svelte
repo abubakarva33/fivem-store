@@ -286,7 +286,8 @@
             <div class="flex justify-between mt-4">
                 <button
                     class="flex-1 px-4 py-1 text-lg bg-slate-700 hover:bg-slate-800 text-white rounded mr-2"
-                    on:click={buyCartItems}>PAY</button
+                    on:click={buyCartItems}
+                    disabled={cart.length === 0}>PAY</button
                 >
                 <button
                     class="flex-1 px-4 py-1 text-lg bg-[#ffffff14] hover:bg-[#ffffff26] text-white rounded ml-2"
