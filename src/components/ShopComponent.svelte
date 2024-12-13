@@ -117,8 +117,8 @@
     }
 
     function buyCartItems() {
-        console.log('Buying items:', cart);
-        SendEvent(Send.buyItem, cart);
+        const total = totalPrice();
+        SendEvent(Send.buyItem, { total: total, items: cart });
     }
 
     // Initialize filteredItems with all items
@@ -196,9 +196,7 @@
                                 </button>
                             </div>
                             <img
-                                src={shopData.shopInventoryImage +
-                                    item.id +
-                                    '.png'}
+                                src={item.image}
                                 alt={item.name}
                                 class="item-image"
                             />
@@ -223,9 +221,7 @@
             >
                 {shopData.shopName}
             </h3>
-            <p
-                class="text-center mt-1 text-sm"
-            >
+            <p class="text-center mt-1 text-sm">
                 {shopData.shopDescription.length > 65
                     ? shopData.shopDescription.slice(0, 65) + '...'
                     : shopData.shopDescription}

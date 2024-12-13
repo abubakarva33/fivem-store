@@ -22,7 +22,6 @@ const shopDebugData = {
     shopName: 'Pearls',
     shopImage: './images/pearls.png',
     shopDescription: 'Welcome to Pearls, how can we help you today?',
-    shopInventoryImage: 'nui://ox_inventory/web/images/',
     shopItems: {
         gourmet_double_burger: {
             id: 'gourmet_double_burger',
@@ -30,6 +29,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         dom_perignon: {
             id: 'dom_perignon',
@@ -37,6 +37,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 2,
+            image: './images/dummyImage.png',
         },
         steak_and_lobster_meal: {
             id: 'steak_and_lobster_meal',
@@ -44,6 +45,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         oysters_half_shell: {
             id: 'oysters_half_shell',
@@ -51,6 +53,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         crab_legs_meal: {
             id: 'crab_legs_meal',
@@ -58,6 +61,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         tropical_chicken_salad: {
             id: 'tropical_chicken_salad',
@@ -65,6 +69,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 1,
+            image: './images/dummyImage.png',
         },
         side_caesar_salad: {
             id: 'side_caesar_salad',
@@ -72,6 +77,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 1,
+            image: './images/dummyImage.png',
         },
         ps_dr_pepper: {
             id: 'ps_dr_pepper',
@@ -79,6 +85,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 2,
+            image: './images/dummyImage.png',
         },
         tilapia_fish_meal: {
             id: 'tilapia_fish_meal',
@@ -86,6 +93,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         shrimp_and_crab_dip: {
             id: 'shrimp_and_crab_dip',
@@ -93,6 +101,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         fried_scallops: {
             id: 'fried_scallops',
@@ -100,14 +109,16 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
-        crab_cakes: { id: 'crab_cakes', name: 'Crab Cakes', price: 500, stock: 500, page: 0 },
+        crab_cakes: { id: 'crab_cakes', name: 'Crab Cakes', price: 500, stock: 500, page: 0, image: './images/dummyImage.png', },
         patron_margarita: {
             id: 'patron_margarita',
             name: 'Patron Margarita',
             price: 500,
             stock: 500,
             page: 2,
+            image: './images/dummyImage.png',
         },
         shrimp_alfredo: {
             id: 'shrimp_alfredo',
@@ -115,6 +126,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         glazed_salmon: {
             id: 'glazed_salmon',
@@ -122,6 +134,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         hennessy_shot: {
             id: 'hennessy_shot',
@@ -129,6 +142,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 2,
+            image: './images/dummyImage.png',
         },
         upeel_shrimp: {
             id: 'upeel_shrimp',
@@ -136,6 +150,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         baby_lobster_pasta: {
             id: 'baby_lobster_pasta',
@@ -143,6 +158,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         chicken_caesar_salad: {
             id: 'chicken_caesar_salad',
@@ -150,14 +166,16 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 1,
+            image: './images/dummyImage.png',
         },
-        catfish: { id: 'catfish', name: 'Catfish', price: 500, stock: 500, page: 0 },
+        catfish: { id: 'catfish', name: 'Catfish', price: 500, stock: 500, page: 0, image: './images/dummyImage.png', },
         salmon_caesar_salad: {
             id: 'salmon_caesar_salad',
             name: 'Salmon Caesar Salad',
             price: 500,
             stock: 500,
             page: 1,
+            image: './images/dummyImage.png',
         },
         shrimp_pasta: {
             id: 'shrimp_pasta',
@@ -165,6 +183,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         ps_coca_cola: {
             id: 'ps_coca_cola',
@@ -172,6 +191,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 2,
+            image: './images/dummyImage.png',
         },
         pearls_coffee: {
             id: 'pearls_coffee',
@@ -179,14 +199,16 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 2,
+            image: './images/dummyImage.png',
         },
-        ps_sprite: { id: 'ps_sprite', name: 'Sprite', price: 500, stock: 500, page: 2 },
+        ps_sprite: { id: 'ps_sprite', name: 'Sprite', price: 500, stock: 500, page: 2, image: './images/dummyImage.png', },
         lobster_bisque: {
             id: 'lobster_bisque',
             name: 'Lobster Bisque',
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         shells_clam_chowder: {
             id: 'shells_clam_chowder',
@@ -194,6 +216,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
         fried_mushrooms: {
             id: 'fried_mushrooms',
@@ -201,6 +224,7 @@ const shopDebugData = {
             price: 500,
             stock: 500,
             page: 0,
+            image: './images/dummyImage.png',
         },
     },
 };

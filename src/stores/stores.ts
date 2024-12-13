@@ -5,7 +5,6 @@ interface ISHOPDATA {
     shopName: string;
     shopLogo: string;
     shopDescription: string;
-    shopInventoryImage: string;
     shopCategory: {
         [key: number]: {
             name: string;
@@ -19,6 +18,7 @@ interface ISHOPDATA {
             price: number;
             stock: number;
             page: number;
+            image: string;
         };
     }
 }
