@@ -11,6 +11,7 @@
     let filteredItems: any[] = [];
     let visuallyShuffledItems: any[] = [];
     let cart: any[] = [];
+    let isModalVisible = false;
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -116,12 +117,26 @@
         container.scrollLeft += event.deltaY;
     }
 
-    function buyCartItems() {
-        const total = totalPrice();
-        SendEvent(Send.buyItem, { total: total, items: cart });
+    function openModal() {
+        isModalVisible = true;
     }
 
-    // Initialize filteredItems with all items
+    function closeModal() {
+        isModalVisible = false;
+    }
+
+    function payWithCard() {
+        const total = totalPrice();
+        SendEvent(Send.buyItem, { total: total, items: cart, method: 'bank' });
+        closeModal();
+    }
+
+    function payWithCash() {
+        const total = totalPrice();
+        SendEvent(Send.buyItem, { total: total, items: cart, method: 'cash' });
+        closeModal();
+    }
+
     filteredItems = Object.values(shopData.shopItems);
     visuallyShuffledItems = Object.values(shopData.shopItems);
 </script>
@@ -286,7 +301,7 @@
             <div class="flex justify-between mt-4">
                 <button
                     class="flex-1 px-4 py-1 text-lg bg-slate-700 hover:bg-slate-800 text-white rounded mr-2"
-                    on:click={buyCartItems}
+                    on:click={openModal}
                     disabled={cart.length === 0}>PAY</button
                 >
                 <button
@@ -297,6 +312,21 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+{#if isModalVisible}
+    <div class="modal-overlay">
+        <div class="modal">
+            <h1 class="text-xl font-bold mb-4">Confirm Payment</h1>
+            <p class="mb-4">Total Amount: ${totalPrice()}</p>
+            <div class="flex justify-between">
+                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded" on:click={payWithCard}>Pay with Card</button>
+                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded" on:click={payWithCash}>Pay with Cash</button>
+            </div>
+            <button class="mt-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded" on:click={closeModal}>Cancel</button>
+        </div>
+    </div>
+{/if}
 
 <style>
     .selected {
@@ -467,5 +497,25 @@
     }
     .category-scrollbar > button:hover > span {
         background: rgba(116, 185, 110, 0.65);
+    }
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: inherit;
+    }
+    .modal {
+        background: #2d3748;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
     }
 </style>
