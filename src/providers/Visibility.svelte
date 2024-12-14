@@ -5,7 +5,6 @@
     import { onMount } from 'svelte';
 
     ReceiveEvent(Receive.visible, (data: any) => {
-        console.log(JSON.stringify(data));
         if (data) {
             VISIBLE.set(true);
             SHOPDATA.set(data);
