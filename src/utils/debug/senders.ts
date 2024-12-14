@@ -20,7 +20,7 @@ const shopDebugData = {
         9: { name: 'Sides', icon: 'fa-carrot' },
     },
     shopName: 'Pearls',
-    shopImage: './images/pearls.png',
+    shopLogo: './images/TextWhite.png',
     shopDescription: 'Welcome to Pearls, how can we help you today?',
     shopItems: {
         gourmet_double_burger: {
