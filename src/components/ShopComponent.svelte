@@ -13,7 +13,7 @@
     let cart: any[] = [];
     let isModalVisible = false;
 
-    function shuffleArray(array) {
+    function shuffleArray(array: any[]) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
@@ -53,7 +53,26 @@
         }
     }
 
-    function addToCart(item) {
+    // function filterItems(category: string) {
+    //     selectedCategory = category;
+
+    //     if (shopData?.shopItems) {
+    //         // Filter items directly without shuffling
+    //         filteredItems = category === 'All'
+    //             ? Object.values(shopData.shopItems)
+    //             : Object.values(shopData.shopItems).filter(
+    //                 item => shopData.shopCategory[item.page]?.name === category
+    //             );
+            
+    //         // Update visual items without animation delay
+    //         visuallyShuffledItems = filteredItems;
+    //     } else {
+    //         filteredItems = [];
+    //         visuallyShuffledItems = [];
+    //     }
+    // }
+
+    function addToCart(item: any) {
         const existingItemIndex = cart.findIndex(
             cartItem => cartItem.name === item.name,
         );
@@ -74,7 +93,7 @@
         }
     }
 
-    function incrementQuantity(item) {
+    function incrementQuantity(item: any) {
         cart = cart.map(cartItem => {
             if (cartItem.name === item.name) {
                 return {
@@ -87,7 +106,7 @@
         });
     }
 
-    function decrementQuantity(item) {
+    function decrementQuantity(item: any) {
         cart = cart.reduce((acc, cartItem) => {
             if (cartItem.name === item.name) {
                 if (cartItem.quantity > 1) {
@@ -112,7 +131,7 @@
         return cart.reduce((total, item) => total + item.totalPrice, 0);
     }
 
-    function handleWheel(event) {
+    function handleWheel(event: WheelEvent) {
         const container = event.currentTarget;
         container.scrollLeft += event.deltaY;
     }
@@ -227,7 +246,7 @@
         <div class="flex flex-col items-center">
             <!-- src={shopData?.shopLogo} -->
             <img
-                src={'/images/TextWhite.png'}
+                src={shopData?.shopLogo}
                 alt="images not found"
                 class="w-28 h-28 mb-1"
             />
