@@ -63,7 +63,7 @@
     //             : Object.values(shopData.shopItems).filter(
     //                 item => shopData.shopCategory[item.page]?.name === category
     //             );
-            
+
     //         // Update visual items without animation delay
     //         visuallyShuffledItems = filteredItems;
     //     } else {
@@ -339,10 +339,19 @@
             <h1 class="text-xl font-bold mb-4">Confirm Payment</h1>
             <p class="mb-4">Total Amount: ${totalPrice()}</p>
             <div class="flex justify-between">
-                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded" on:click={payWithCard}>Pay with Card</button>
-                <button class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded" on:click={payWithCash}>Pay with Cash</button>
+                <button
+                    class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded"
+                    on:click={payWithCard}>Pay with Card</button
+                >
+                <button
+                    class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded"
+                    on:click={payWithCash}>Pay with Cash</button
+                >
             </div>
-            <button class="mt-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded" on:click={closeModal}>Cancel</button>
+            <button
+                class="mt-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
+                on:click={closeModal}>Cancel</button
+            >
         </div>
     </div>
 {/if}
