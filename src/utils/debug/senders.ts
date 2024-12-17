@@ -81,7 +81,7 @@ const shopDebugData = {
         },
         ps_dr_pepper: {
             id: 'ps_dr_pepper',
-            name: 'Dr Pepper',
+            name: 'Spiced Cola',
             price: 500,
             stock: 500,
             page: 2,
@@ -201,7 +201,7 @@ const shopDebugData = {
             page: 2,
             image: './images/dummyImage.png',
         },
-        ps_sprite: { id: 'ps_sprite', name: 'Sprite', price: 500, stock: 500, page: 2, image: './images/dummyImage.png', },
+        ps_sprite: { id: 'ps_sprite', name: 'Lemon Lime Soda', price: 500, stock: 500, page: 2, image: './images/dummyImage.png', },
         lobster_bisque: {
             id: 'lobster_bisque',
             name: 'Lobster Bisque',
