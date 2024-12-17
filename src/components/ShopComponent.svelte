@@ -13,19 +13,11 @@
     let cart: any[] = [];
     let isModalVisible = false;
 
-    function shuffleArray(array: any[]) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
     function filterItems(category: string) {
         selectedCategory = category;
 
         if (shopData?.shopItems) {
-            const newFilteredItems =
+            filteredItems =
                 category === 'All'
                     ? Object.values(shopData.shopItems)
                     : Object.values(shopData.shopItems).filter(
@@ -33,44 +25,10 @@
                               shopData.shopCategory[item.page]?.name ===
                               category,
                       );
-
-            // Set actual filtered items
-            filteredItems = newFilteredItems;
-
-            // Apply the shuffle effect temporarily
-            setTimeout(() => {
-                const shuffledItems = shuffleArray([...newFilteredItems]);
-                visuallyShuffledItems = [...shuffledItems]; // Temporary shuffled state
-
-                // Revert back to the actual filtered items after animation
-                setTimeout(() => {
-                    visuallyShuffledItems = [...filteredItems];
-                }, 0); // Match animation duration
-            }, 0);
         } else {
             filteredItems = [];
-            visuallyShuffledItems = [];
         }
     }
-
-    // function filterItems(category: string) {
-    //     selectedCategory = category;
-
-    //     if (shopData?.shopItems) {
-    //         // Filter items directly without shuffling
-    //         filteredItems = category === 'All'
-    //             ? Object.values(shopData.shopItems)
-    //             : Object.values(shopData.shopItems).filter(
-    //                 item => shopData.shopCategory[item.page]?.name === category
-    //             );
-
-    //         // Update visual items without animation delay
-    //         visuallyShuffledItems = filteredItems;
-    //     } else {
-    //         filteredItems = [];
-    //         visuallyShuffledItems = [];
-    //     }
-    // }
 
     function addToCart(item: any) {
         const existingItemIndex = cart.findIndex(
@@ -196,10 +154,12 @@
             <!-- Items -->
             <div class="item-scrollbar">
                 <div class="grid grid-cols-3 gap-2">
-                    {#each visuallyShuffledItems as item (item?.name)}
+                    {#each filteredItems as item (item?.name)}
                         <div
-                            animate:flip={{ duration: 500, easing: cubicOut }}
                             class="item-card"
+                            animate:flip={{ duration: 500, easing: cubicOut }}
+                            style="animation: shuffle 0.5s ease {Math.random() *
+                                0.5}s;"
                         >
                             <div
                                 class="item-details flex flex-col justify-between"
@@ -462,6 +422,9 @@
             rgba(255, 255, 255, 0) 80.34%
         );
         backdrop-filter: blur(4px);
+        animation-name: shuffle;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
     }
 
     .item-details > div > h3 {
@@ -545,5 +508,16 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         width: 300px;
         text-align: center;
+    }
+
+    @keyframes shuffle {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 </style>
