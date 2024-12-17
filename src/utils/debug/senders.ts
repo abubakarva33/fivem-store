@@ -185,8 +185,8 @@ const shopDebugData = {
             page: 0,
             image: './images/dummyImage.png',
         },
-        ps_coca_cola: {
-            id: 'ps_coca_cola',
+        ps_cola_classic: {
+            id: 'ps_cola_classic',
             name: 'Ccoca Cola',
             price: 500,
             stock: 500,
@@ -201,7 +201,7 @@ const shopDebugData = {
             page: 2,
             image: './images/dummyImage.png',
         },
-        ps_sprite: { id: 'ps_sprite', name: 'Lemon Lime Soda', price: 500, stock: 500, page: 2, image: './images/dummyImage.png', },
+        ps_lemon_lime_soda: { id: 'ps_lemon_lime_soda', name: 'Lemon Lime Soda', price: 500, stock: 500, page: 2, image: './images/dummyImage.png', },
         lobster_bisque: {
             id: 'lobster_bisque',
             name: 'Lobster Bisque',
